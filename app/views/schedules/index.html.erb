@@ -1,0 +1,48 @@
+<%= render "shared/partial" %>
+
+<h3>予定一覧</h3>
+
+<p><%= link_to "新規追加", :new_schedule %></p>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>タイトル</th>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>終日</th>
+        <th>更新日時</th>
+        <th>詳細</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.id %></td>
+          <td><%= schedule.title %></td>
+          <td><%= schedule.startDay.strftime("%Y/%m/%d") %></td>
+          <td><%= schedule.finishDay.strftime("%Y/%m/%d") %></td>
+          <td>
+            <% if schedule.allDay %> ○ <% end %>
+          </td>
+          <td><%= schedule.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+          <td><%= link_to "詳細", schedule %></td>
+          <td><%= link_to "編集", [:edit, schedule] %></td>
+          <td><%= link_to "削除", schedule, method: :delete, data: {confirm:"本当に削除しますか？"} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="info">
+    <p>予定合計 <%= @schedules.count %> 件</p>
+    <p>本日の日付 <%= Date.today %></p>
+  </div>
+</div>
+
+
