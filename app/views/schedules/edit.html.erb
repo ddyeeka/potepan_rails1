@@ -1,0 +1,38 @@
+<%= render "shared/partial" %>
+
+<h3>予定を編集してください</h3>
+
+<%= form_with model: @schedule do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :title ,"タイトル" %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :startDay ,"開始日" %></th>
+      <td><%= f.date_field :startDay %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :finishDay ,"終了日" %></th>
+      <td><%= f.date_field :finishDay %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :allDay ,"終日" %></th>
+      <td>
+        <%= f.check_box :allDay %>
+        <p>終日の場合はチェックを入れます</p>
+      </td>
+    </tr>
+    <tr>
+      <th><%= f.label :memo ,"スケジュールメモ" %></th>
+      <td><%= f.text_area :memo %></td>
+    </tr>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "保存" %></li>
+      <li><%= link_to "キャンセル", :schedules %></li>
+    </ul>
+  </div>
+<% end %>
